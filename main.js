@@ -7,17 +7,15 @@ async function run() {
         .entries(data.tree)
         // We want to only include .json files that aren't the schema.
         .filter(file => file.path?.endsWith('.json') && file.path !== "tea.schema.json");
-    if (files.length === 0) {
-        // No tea yet :(
-        document.getElementById("tea-list-container").remove();
-    } else {
-        for (const file of files) {
-            const contents = await fetch(file.path).then(res => res.json());
-            // All tea json files should render as list item children of the tea list
-            const teaListItem = document.createElement('li');
-            teaListItem.textContent = contents.name;
-            teaList.appendChild(teaListItem);
-        }
+    for (const file of files) {
+        const contents = await fetch(file.path).then(res => res.json());
+        // All tea json files should render as list item children of the tea list
+        const teaListItem = document.createElement('li');
+        teaListItem.textContent = contents.name;
+        teaList.appendChild(teaListItem);
+    }
+    if (files.length > 0) {
+        document.getElementById('tea-list-container').hidden = false;
     }
 }
 
