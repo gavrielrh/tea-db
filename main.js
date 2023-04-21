@@ -9,7 +9,7 @@ async function run() {
         .filter(file => file.path?.endsWith('.json') && file.path !== "tea.schema.json");
     if (files.length === 0) {
         // No tea yet :(
-        teaList.remove();
+        document.getElementById("tea-list-container").remove();
     } else {
         for (const file of files) {
             const contents = await fetch(file.path).then(res => res.json());
