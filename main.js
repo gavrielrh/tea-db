@@ -3,7 +3,6 @@ async function run() {
     const teaList = document.getElementById("tea-list");
     // since we're a static site, we need to use the github api to find out what files we have access to :(
     const data = await fetch('https://api.github.com/repos/gavrielrh/tea-db/git/trees/main').then(res => res.json());
-    console.log(data);
     const files = Object
         .entries(data.tree)
         // We want to only include .json files that aren't the schema.
