@@ -1,0 +1,30 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://gavrielrh.github.io/tea-db/tea.schema.json",
+    "title": "Tea",
+    "description": "A tea in the database",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The name of the tea",
+            "type": "string"
+        },
+        "description": {
+            "description": "The description of the tea",
+            "type": "string"
+        },
+        "origin": {
+            "description": "The origin of the tea",
+            "type": "string"
+        },
+        "category": {
+            "description": "The category of the tea",
+            "enum": [ "white", "yellow", "green", "oolong", "black", "post-fermented" ]
+        },
+        "steepingTips": {
+            "description": "Tips for steeping the tea",
+            "type": "string"
+        }
+    },
+    "required": [ "name", "category" ]
+}
