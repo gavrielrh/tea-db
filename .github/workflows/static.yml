@@ -38,21 +38,44 @@ jobs:
           python3 -c '
           import os
           import json
+          from string import Template
           tea_files = [f for f in os.listdir(".") if f.endswith(".json") and not f.endswith(".schema.json")]
-          with open("index.html", "r+") as f:
-            content = f.read()
-            ul_start = content.index("<ul id=\"tea-list\"")
-            ul_end = content.index("</ul>", ul_start) + 5
+          html_template = """<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Tea DB</title>
+        <meta name="description" content="A database of tea.">
+        <meta property="og:title" content="Tea DB">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://gavrielrh.github.io/tea-db">
+        <meta property="og:description" content="A database of tea.">
+        <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Tea_in_different_grade_of_fermentation.jpg/1920px-Tea_in_different_grade_of_fermentation.jpg">
+    </head>
+    <body>
+        <div>
+            Schema: <a href="tea.schema.json">tea.schema.json</a>
+        </div>
+        <div>
+            <h1>Tea List</h1>
+            <ul id="tea-list">
+            $tea_list
+            </ul>
+        </div>
+    </body>
+</html>"""
+          li_template = "<li><a href=\"$link\">$name</a></li>"
+          li_body = ""
+          with open("index.html", "w") as f:
             for tea_file in tea_files:
               with open(tea_file, "r") as jf:
                 data = json.load(jf)
                 name = data.get("name", "")
                 if name:
-                  anchor_tag = f"<a href=\"{tea_file}\">{name}</a>"
-                  content = content[:ul_end] + f"\n<li>{anchor_tag}</li>" + content[ul_end:]
-            f.seek(0)
-            f.write(content)
-            f.truncate()
+                  li = Template(li_template).substitute(link=tea_file, name=name)
+                  li_body += f"{li}\n"
+            f.write(Template(html_template).substitute(tea_list=li_body))
           '
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
