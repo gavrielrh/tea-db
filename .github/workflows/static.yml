@@ -44,12 +44,11 @@ jobs:
             ul_start = content.index("<ul id=\"tea-list\"")
             ul_end = content.index("</ul>", ul_start) + 5
             for tea_file in tea_files:
-              with open(os.path.join(dir_path, json_file), "r") as jf:
+              with open(json_file, "r") as jf:
                 data = json.load(jf)
                 name = data.get("name", "")
                 if name:
-                  file_name = os.path.splitext(os.path.basename(json_file))[0]
-                  anchor_tag = f"<a href=\"{file_name}\">{name}</a>"
+                  anchor_tag = f"<a href=\"{json_file}\">{name}</a>"
                   content = content[:ul_end] + f"\n<li>{anchor_tag}</li>" + content[ul_end:]
             f.seek(0)
             f.write(content)
