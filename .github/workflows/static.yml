@@ -84,14 +84,7 @@ jobs:
           text-decoration: underline;
           }
           ol, ul {
-          margin: 1em;
           list-style-type: none;
-          }
-          ol li ol, ol li ul, ul li ol, ul li ul {
-          margin: 0 2em;
-          }
-          ol li p, ul li p {
-          margin: 0;
           }
           </style>
           </head>
