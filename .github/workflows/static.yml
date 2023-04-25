@@ -52,6 +52,47 @@ jobs:
           <meta property="og:url" content="https://gavrielrh.github.io/tea-db">
           <meta property="og:description" content="A database of tea.">
           <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Tea_in_different_grade_of_fermentation.jpg/1920px-Tea_in_different_grade_of_fermentation.jpg">
+          <style>
+          * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          }
+          html {
+          overflow-y: scroll;
+          height: 100%;
+          font: 100%/1.5 sans-serif;
+          word-wrap: break-word;
+          margin: 0 auto;
+          padding: 1.5em;
+          }
+          @media (min-width: 768px) {
+          html {
+          font-size: 125%;
+          max-width: 42em;
+          }}
+          h1, h2, h3, h4 {
+          margin: 2.5rem 0 1.5rem 0;
+          line-height: 1.25;
+          color: #333;
+          }
+          a {
+          color: #fa6432;
+          text-decoration: none;
+          }
+          a:hover, a:focus, a:active {
+          text-decoration: underline;
+          }
+          ol, ul {
+          margin: 1em;
+          }
+          ol li ol, ol li ul, ul li ol, ul li ul {
+          margin: 0 2em;
+          }
+          ol li p, ul li p {
+          margin: 0;
+          }
+          </style>
           </head>
           <body>
           <div>Schema: <a href="tea.schema.json">tea.schema.json</a></div>
