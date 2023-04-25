@@ -58,8 +58,7 @@ jobs:
           <div>
           <h1>Tea List</h1>
           <ul id="tea-list">
-          $tea_list
-          </ul>
+          $tea_list</ul>
           </div>
           </body>
           </html>"""
