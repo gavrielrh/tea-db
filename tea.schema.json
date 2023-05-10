@@ -21,10 +21,44 @@
             "description": "The category of the tea",
             "enum": [ "white", "yellow", "green", "oolong", "black", "post-fermented" ]
         },
-        "steepingTips": {
-            "description": "Tips for steeping the tea",
-            "type": "string"
+        "steeping": {
+            "description": "Steeping Instructions",
+            "type": "object",
+            "properties": {
+                "western": { "$ref": "#/$defs/SteepingInstruction" },
+                "gongfu": { "$ref": "#/$defs/SteepingInstruction" },
+                "tips": {
+                    "description": "Tips for steeping the tea",
+                    "type": "string"
+                }
+            }
         }
     },
-    "required": [ "name", "category" ]
+    "required": [ "name", "category" ],
+    "$defs": {
+        "SteepingInstruction": {
+            "type": "object",
+            "properties": {
+                "mass": {
+                    "description": "Mass (in grams)",
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
+                "temperature": {
+                    "description": "Temperature (in degrees celsius)",
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 100
+                },
+                "times": {
+                    "description": "Steeping times (in seconds)",
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 1
+                }
+            }
+        }
+    }
 }
